@@ -1,5 +1,8 @@
 import React from 'react';
 import Job from "./job";
+import {FormattedMessage} from 'react-intl';
+
+console.log(<FormattedMessage id="Position"/>);
 
 export default class JobsList extends React.Component {
 
@@ -12,7 +15,7 @@ export default class JobsList extends React.Component {
     	  "salary": 4.5,
     	  "city": "Bogotá, Colombia",
         "date": "2019-03-26",
-        "views": 12487
+        "views": 12780
       }, 
       {
         "id": "0002",
@@ -39,15 +42,27 @@ export default class JobsList extends React.Component {
     return (
       <div>
         <table className="table">
-          <thead className="thead-dark">
+          <thead className={((navigator.language || navigator.userLanguage).startsWith("es"))? "thead-light" : "thead-dark"}>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Position</th>
-              <th scope="col">Company</th>
-              <th scope="col">Salary</th>
-              <th scope="col">City</th>
-              <th scope="col">Publication date</th>
-              <th scope="col">Views</th>
+              <th scope="col">
+                  <FormattedMessage id="Position"/>
+              </th>
+              <th scope="col">
+                  <FormattedMessage id="Company"/>
+              </th>
+              <th scope="col">
+                  <FormattedMessage id="Salary"/>
+              </th>
+              <th scope="col">
+                  <FormattedMessage id="City"/>
+              </th>
+              <th scope="col">
+                  <FormattedMessage id="PublicationDate"/>
+              </th>
+              <th scope="col">
+                  <FormattedMessage id="Views"/>
+              </th>
             </tr>
           </thead>
           <tbody>
