@@ -1,21 +1,7 @@
 import React from 'react';
-import {FormattedDate, FormattedNumber } from 'react-intl';
+import {FormattedDate, FormattedPlural, FormattedNumber} from 'react-intl';
 
 export default class Job extends React.Component {
-	addMillions(views){
-		console.log(views);
-		let number =  parseInt(views);
-		let textEnding;
-		if(number > 0)
-			textEnding = " millions";
-		else
-			textEnding = " million";
-		console.log(number);
-		textEnding = number + textEnding;
-		console.log(textEnding);
-		return textEnding;
-	}
-
   	render() {
   		return (
   			<tr>
@@ -38,7 +24,13 @@ export default class Job extends React.Component {
 						value ={this.props.offer.views}
 						displayType={'text'} 
 						thousandSeparator={true}
-					/> million(s)
+					/> 
+					<FormattedPlural 
+						value ={this.props.offer.views}
+						thousandSeparator={true}
+						one=' million'
+						other=' millions'
+					/>
 				</td>
   			</tr>
   		);
