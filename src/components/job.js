@@ -1,6 +1,16 @@
 import React from 'react';
+import {FormattedDate, FormattedNumber } from 'react-intl';
 
 export default class Job extends React.Component {
+	addMillions(views){
+		let number =  parseInt(views);
+		let textEnding;
+		if(number > 0)
+			textEnding = " millions";
+		else
+			textEnding = " million";
+		return number + textEnding;
+	}
 
   	render() {
   		return (
@@ -10,7 +20,22 @@ export default class Job extends React.Component {
   				<td>{this.props.offer.company}</td>
       			<td>{this.props.offer.salary}</td>
       			<td>{this.props.offer.city}</td>
-      			<td>{this.props.offer.date}</td>
+      			<td>
+					<FormattedDate
+						value={new Date(this.props.offer.date)}
+						year='numeric'
+						month='long'
+						day='numeric'
+						weekday='long'
+					/>
+				</td>
+				<td>
+					<FormattedNumber 
+						value ={this.addMillions(this.props.offer.views)}
+						displayType={'text'} 
+						thousandSeparator={true}
+					/>
+				</td>
   			</tr>
   		);
 	}
